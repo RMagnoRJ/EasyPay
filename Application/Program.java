@@ -59,15 +59,22 @@ public class Program {
 
             double valorDaCompra = 0.0;
             Integer modalidade = 0;
-            Integer dia = 1;
-            Integer mes = 1;
-            Integer ano = 0;
+            //Integer dia = 1;
+            //Integer mes = 1;
+            //Integer ano = 0;
 
 
             if (menu < 8){
 
                 System.out.print("\nValor da compra: ");
                 valorDaCompra = inn.nextDouble(); inn.nextLine();
+
+                
+                /* 
+                Este recurso está TEMPORARIAMENTE DESATIVADO
+                para manter o programa rodando com a data
+                AUTOMATIZADA utilizando data e hora do 
+                momento em que for GERADA A NOTA FISCAL. 
 
                 System.out.println("\nData da compra: \n");
                 System.out.print("Dia: ");
@@ -76,16 +83,22 @@ public class Program {
                 mes = inn.nextInt(); inn.nextLine();
                 ano = 2024;
                 System.out.println();
+
+                Após habilitar este recursos as variáveis de composição 
+                de DATA - acima - e o objeto HOJE - abaixo - devem ser 
+                REABILITADAS; e, o objeto HOJE do Switch deve ser
+                DESABILITADA.
+                */
             }
 
-            hoje = LocalDate.of(ano, mes, dia);
+            // hoje = LocalDate.of(ano, mes, dia);
 
             switch (menu) {
 
                 case 1:
                     // PIX/Dinheiro
                     PayMode noPix = new Pix();
-                    //hoje = LocalDate.now();
+                    hoje = LocalDate.now();
                     data = new Calendario(hoje);
                     modalidade = 3;
                     Descritivo pagNoPix = new Descritivo(modalidade, valorDaCompra, noPix);
@@ -103,7 +116,7 @@ public class Program {
                 case 2:
                     // Débito
                     PayMode noDebito = new Debito();
-                    //hoje = LocalDate.now();
+                    hoje = LocalDate.now();
                     data = new Calendario(hoje);
                     modalidade = 4;
                     Descritivo pagNoDebito = new Descritivo(modalidade, valorDaCompra, noDebito);
@@ -121,7 +134,7 @@ public class Program {
                 case 3:
                     // Crédito a vista
                     PayMode creditoAVista = new CreditoAVista();
-                    //hoje = LocalDate.now();
+                    hoje = LocalDate.now();
                     data = new Calendario(hoje);
                     modalidade = 4;
                     Descritivo pagNoCreditoAVista = new Descritivo(modalidade, valorDaCompra, creditoAVista);
@@ -142,7 +155,7 @@ public class Program {
                     int parcelasPayPal = inn.nextInt(); inn.nextLine();
                     
                     PayMode payPal = new CreditoPayPal();
-                    //hoje = LocalDate.now();
+                    hoje = LocalDate.now();
                     data = new Calendario(hoje);
                     modalidade = 1;
                     Descritivo pagNoPayPal = new Descritivo(modalidade, valorDaCompra, parcelasPayPal, payPal);
@@ -164,7 +177,7 @@ public class Program {
                     int parcelaNu = inn.nextInt(); inn.nextLine();
                     
                     PayMode nuPay = new CreditoNu();
-                    //hoje = LocalDate.now();
+                    hoje = LocalDate.now();
                     data = new Calendario(hoje);
                     modalidade = 2;
                     Descritivo pagNoNuBank = new Descritivo(modalidade, valorDaCompra, parcelaNu, nuPay);
@@ -186,7 +199,7 @@ public class Program {
                     int parcelaVisa = inn.nextInt(); inn.nextLine();
 
                     PayMode visa = new CreditoVisa();
-                    //hoje = LocalDate.now();
+                    hoje = LocalDate.now();
                     data = new Calendario(hoje);
                     modalidade = 1;
                     Descritivo pagNoVisa = new Descritivo(modalidade, valorDaCompra, parcelaVisa, visa);
@@ -208,7 +221,7 @@ public class Program {
                     int parcelaMaster = inn.nextInt(); inn.nextLine();
 
                     PayMode master = new CreditoMaster();
-                    //hoje = LocalDate.now();
+                    hoje = LocalDate.now();
                     data = new Calendario(hoje);
                     modalidade = 1;
                     Descritivo pagNoMaster = new Descritivo(modalidade, valorDaCompra, parcelaMaster, master);
